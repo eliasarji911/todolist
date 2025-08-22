@@ -32,7 +32,7 @@ app.post('/s',(req,res)=>{
 });
 
 app.delete('/s/:id',(req,res)=>{
-    const id = parseInt(req.params.id);
+    let id = parseInt(req.params.id);
 
     if (id < 0 || todo.length < id){
         return res.status(400).json({message:"not found"})
@@ -43,6 +43,21 @@ app.delete('/s/:id',(req,res)=>{
     res.json({ message:"Task deleted" });
    
 });
+
+app.get('/s/:id',(req,res)=>{
+
+    let id = req.params.id;
+
+     if (id < 0 || todo.length < id || todo[id] == null){
+        return res.status(400).json({message:"not found"})
+    }
+
+
+    let obj = todo[id];
+    res.json(obj);
+   
+});
+
 
 
 
