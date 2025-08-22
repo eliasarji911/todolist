@@ -31,6 +31,19 @@ app.post('/s',(req,res)=>{
    res.status(201).json({message:"ok"})
 });
 
+app.delete('/s/:id',(req,res)=>{
+    const id = parseInt(req.params.id);
+
+    if (id < 0 || todo.length < id){
+        return res.status(400).json({message:"not found"})
+    }
+
+    delete todo[id];
+
+    res.json({ message:"Task deleted" });
+   
+});
+
 
 
 app.listen(port,()=>(console.log(`http://localhost:${port}`)));
