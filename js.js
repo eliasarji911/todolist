@@ -18,9 +18,13 @@ app.get('/s',(req,res)=>{
 
 app.post('/s',(req,res)=>{
 
+    let text = req.body.txt;
+    if (!text){
+        return res.status(400).json({message: "text cannot be empty"})
+    }
     let id = nextid++;
 
-    let text = req.body.txt;
+    
     let task = {id,text};
     todo[id] = task;
 
