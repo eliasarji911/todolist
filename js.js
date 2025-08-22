@@ -45,17 +45,33 @@ app.delete('/s/:id',(req,res)=>{
 });
 
 app.get('/s/:id',(req,res)=>{
-
     let id = req.params.id;
 
      if (id < 0 || todo.length < id || todo[id] == null){
         return res.status(400).json({message:"not found"})
     }
 
-
     let obj = todo[id];
     res.json(obj);
-   
+});
+
+app.patch('/s/:id',(req,res)=>{
+    let id = req.params.id;
+     if (id < 0 || todo.length < id || todo[id] == null){
+        return res.status(400).json({message:"not found"})
+    }
+///  
+///
+    let text = req.body.txt;
+     if (!text){
+        return res.status(400).json({message: "text cannot be empty"})
+    }
+
+    let obj = todo[id];
+    obj.text = text;
+
+
+    res.json(todo[id]);
 });
 
 
