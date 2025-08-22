@@ -1,0 +1,25 @@
+{
+  "name": "to-do-list-project",
+  "version": "1.0.0",
+  "main": "js.js",
+  "scripts": {
+    "start":"nodemon js.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YourUsername/todolist.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YourUsername/todolist/issues"
+  },
+  "homepage": "https://github.com/YourUsername/todolist#readme",
+  "description": "",
+  "dependencies": {
+    "express": "^5.1.0",
+    "nodemon": "^3.1.10"
+  }
+}
