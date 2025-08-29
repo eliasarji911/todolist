@@ -1,7 +1,9 @@
 const express = require('express');
 const app = express();
 const port = 3000;
+const path = require('path');
 app.use(express.json());
+app.use(express.static(path.json(__dirname)));
 
 const todo = [];
 
@@ -22,10 +24,12 @@ app.post('/s',(req,res)=>{
     if (!text){
         return res.status(400).json({message: "text cannot be empty"})
     }
+
+    let isdone = false;
     let id = nextid++;
 
     
-    let task = {id,text};
+    let task = {id,text, isdone};
     todo[id] = task;
 
    res.status(201).json({message:"ok"})
@@ -75,6 +79,27 @@ app.patch('/s/:id',(req,res)=>{
 });
 
 
+app.patch('/s/:id',(req,res)=>{
+    let id = req.params.id;
+     if (id < 0 || todo.length < id || todo[id] == null){
+        return res.status(400).json({message:"not found"})
+    }
+
+    let isdone = req.body.isdone;
+    if (isdone != undefined){
+
+        todo[id].isdone = isdone;
+
+    }
+
+
+    let text = req.body.txt;
+     if (text){
+        todo[id].text = text;
+    }
+
+    res.json(todo[id]);
+});
 
 
 app.listen(port,()=>(console.log(`http://localhost:${port}`)));
